@@ -226,11 +226,22 @@ final class SnapStore {
     var lastDir: CGFloat = 0
     /// Speed at the last release (pt/s), so the glide carries it on instead of starting from a standstill.
     var releaseVelocity: CGFloat = 0
-    /// The tall section the last release left you reading, so a coast that runs past its end settles back on it.
-    var reading: Tall?
-    /// How far past a tall section's end you can drag and still be "reading it": less than about half a
-    /// screen means you were looking for its last line, so it settles with that line at the bottom.
-    var pastEnd: CGFloat { max(visible.height * 0.45, 120) }
+    /// What was on screen when the finger touched down (same content coordinates as `frames`).
+    var visibleStart: CGRect = .zero
+    /// The tall section the last release left you reading, so a coast that runs past its end settles on it.
+    var reading: Int?
+    /// A section taller than this share of the screen is read by scrolling, not centred.
+    static let tallShare: CGFloat = 0.85
+
+    /// Sections too tall to centre, top to bottom.
+    private func tallSections() -> [(id: Int, f: CGRect)] {
+        frames.filter { $0.key != -1 && $0.key != 99 && $0.value.height > visible.height * Self.tallShare }
+            .map { (id: $0.key, f: $0.value) }.sorted { $0.f.minY < $1.f.minY }
+    }
+    /// Glide targets that put a section's last line at the bottom of the screen, or its first line at the top,
+    /// measured from where it is on screen right now (no offset bookkeeping to drift out of step).
+    private func endStop(_ id: Int, _ f: CGRect) -> SnapStop { SnapStop(y: offset + f.maxY - visible.maxY, id: id, anchor: .bottom) }
+    private func startStop(_ id: Int, _ f: CGRect) -> SnapStop { SnapStop(y: offset + f.minY - visible.minY, id: id, anchor: .top) }
 
     /// Stops closer than this are one stop, so a small scroll always reaches a new section.
     static let merge: CGFloat = 90
@@ -263,7 +274,7 @@ final class SnapStore {
         var raw: [SnapStop] = [SnapStop(y: lo, id: -1, anchor: .top), SnapStop(y: hi, id: 99, anchor: .bottom)]
         var tall: [Tall] = []
         for (id, f) in frames where id != -1 && id != 99 {
-            if f.height <= vh * 0.98 {                       // fits on screen: centre it
+            if f.height <= vh * Self.tallShare {                       // fits on screen: centre it
                 raw.append(SnapStop(y: off(f.midY - vh / 2), id: id, anchor: .center))
             } else {
                 let a = SnapStop(y: off(f.minY), id: id, anchor: .top), b = SnapStop(y: off(f.maxY - vh), id: id, anchor: .bottom)
@@ -315,42 +326,38 @@ final class SnapStore {
     func release() -> SnapStop? {
         defer { touching = false; samples = []; dragStart = nil }
         guard let l = layout else { return nil }
-        let (stops, tall) = l
+        let stops = l.stops
         let v = releaseSpeed
         let dragged = dragStart.map { offset - $0 } ?? 0
         let flick = abs(v) >= Self.flickSpeed
         let dir: CGFloat = flick ? v : (abs(dragged) >= Self.nudge ? dragged : 0)
         lastDir = dir > 0 ? 1 : dir < 0 ? -1 : 0
         let projected = flick ? offset + v * 0.5 : offset      // where iOS's normal deceleration would coast to
-        // Reading a section taller than the screen: scroll it freely, and a flick stops at its far edge.
-        // Only a drag that starts at that edge, heading out, moves on to the next section. Judged by where the
-        // drag started, so a long drag inside it, or a section just a little taller than the screen, never
-        // jumps past the part you haven't read yet.
-        let start: CGFloat = dragStart ?? offset
-        let k: CGFloat = Self.slack, far: CGFloat = pastEnd
+        // Reading a section taller than the screen (Heads up with a long list, say): it scrolls freely, and
+        // whenever its end comes on screen the page rests on that end. Only a swipe that STARTS with its end
+        // already showing moves on to the next section. All judged from what is actually on screen, so it
+        // can't be thrown off by safe-area insets or by where a glide happened to land.
         reading = nil
-        for z in tall {
-            let zTop: CGFloat = z.range.lowerBound, zEnd: CGFloat = z.range.upperBound
-            guard start >= zTop - k && start <= zEnd + k else { continue }
-            let atTop: Bool = start <= zTop + k && start - zTop <= zEnd - start
-            let atBottom: Bool = start >= zEnd - k && start - zTop > zEnd - start
+        let vis0 = visibleStart.height > 0 ? visibleStart : visible
+        let moved = projected - offset                          // how much further a coast would carry the page
+        let m: CGFloat = 8
+        var leaving: Int?
+        for (id, f) in tallSections() where f.minY < vis0.midY && f.maxY > vis0.midY {   // the one you were reading
             if dir > 0 {
-                if atBottom || offset > zEnd + far { break }        // already at its end: on to the next section
-                reading = z
-                if projected >= zEnd { return abs(z.bottom.y - offset) <= 3 ? nil : z.bottom }   // rest on its last line
+                if f.maxY <= vis0.maxY + m || f.maxY < visible.minY + visible.height * 0.5 { leaving = id; break }
+                reading = id
+                if f.maxY <= visible.maxY + moved + m { let t = endStop(id, f); return abs(t.y - offset) <= 3 ? nil : t }
                 return nil
             } else if dir < 0 {
-                if atTop || offset < zTop - far { break }
-                reading = z
-                if projected <= zTop { return abs(z.top.y - offset) <= 3 ? nil : z.top }
-                return nil
-            } else if offset >= zTop - k && offset <= zEnd + k {
+                if f.minY >= vis0.minY - m || f.minY > visible.minY + visible.height * 0.5 { leaving = id; break }
+                reading = id
+                if f.minY >= visible.minY + moved - m { let t = startStop(id, f); return abs(t.y - offset) <= 3 ? nil : t }
                 return nil
             }
-            break
+            return nil                                          // no swipe: stay put
         }
         releaseVelocity = flick ? v : 0
-        let d = Self.destination(stops: stops, from: offset, to: projected, dragged: dragged)
+        let d = Self.destination(stops: stops.filter { $0.id != leaving }, from: offset, to: projected, dragged: dragged)
         return d.flatMap { abs($0.y - offset) <= 3 ? nil : $0 }
     }
 
@@ -358,16 +365,16 @@ final class SnapStore {
     /// carry on to the next one the way it was going.
     func settle() -> SnapStop? {
         guard let l = layout else { return nil }
-        let (stops, tall) = l
-        if stops.contains(where: { abs($0.y - offset) <= 6 }) { return nil }
-        // Coasted past the end of the section you were reading: settle on its edge, not the next section.
-        if let z = reading {
+        let stops = l.stops
+        // Coasted until the end of the section you were reading came on screen: rest on that end.
+        if let id = reading, let f = frames[id] {
             reading = nil
-            if offset > z.range.upperBound && offset <= z.range.upperBound + pastEnd { return z.bottom }
-            if offset < z.range.lowerBound && offset >= z.range.lowerBound - pastEnd { return z.top }
+            if f.maxY < visible.maxY - 8 && f.maxY > visible.minY + visible.height * 0.5 { return endStop(id, f) }
+            if f.minY > visible.minY + 8 && f.minY < visible.minY + visible.height * 0.5 { return startStop(id, f) }
         }
-        let y: CGFloat = offset
-        if tall.contains(where: { (z: Tall) -> Bool in z.range.contains(y) || abs(y - z.range.lowerBound) <= 6 || abs(y - z.range.upperBound) <= 6 }) { return nil }
+        if stops.contains(where: { abs($0.y - offset) <= 6 }) { return nil }
+        // Still inside a tall section: leave it where you stopped reading.
+        if tallSections().contains(where: { $0.f.minY < visible.midY && $0.f.maxY > visible.midY }) { return nil }
         return Self.destination(stops: stops, from: offset, to: offset, dragged: lastDir * Self.nudge)
     }
 }
@@ -395,7 +402,7 @@ struct MagnetSnap: ViewModifier {
                 .onScrollPhaseChange { old, new in
                     let touching = { (p: ScrollPhase) in p == .tracking || p == .interacting }
                     if touching(new) && !touching(old) {                       // finger down
-                        store.dragStart = store.offset; store.samples = []; store.touching = true
+                        store.dragStart = store.offset; store.visibleStart = store.visible; store.samples = []; store.touching = true
                         store.record(store.offset)
                     } else if touching(old) && !touching(new) {                // finger up
                         if let t = store.release() { glide(t) }
