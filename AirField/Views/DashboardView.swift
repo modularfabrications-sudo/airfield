@@ -226,6 +226,11 @@ final class SnapStore {
     var lastDir: CGFloat = 0
     /// Speed at the last release (pt/s), so the glide carries it on instead of starting from a standstill.
     var releaseVelocity: CGFloat = 0
+    /// The tall section the last release left you reading, so a coast that runs past its end settles back on it.
+    var reading: Tall?
+    /// How far past a tall section's end you can drag and still be "reading it": less than about half a
+    /// screen means you were looking for its last line, so it settles with that line at the bottom.
+    var pastEnd: CGFloat { max(visible.height * 0.45, 120) }
 
     /// Stops closer than this are one stop, so a small scroll always reaches a new section.
     static let merge: CGFloat = 90
@@ -322,18 +327,21 @@ final class SnapStore {
         // drag started, so a long drag inside it, or a section just a little taller than the screen, never
         // jumps past the part you haven't read yet.
         let start: CGFloat = dragStart ?? offset
-        let k: CGFloat = Self.slack
+        let k: CGFloat = Self.slack, far: CGFloat = pastEnd
+        reading = nil
         for z in tall {
             let zTop: CGFloat = z.range.lowerBound, zEnd: CGFloat = z.range.upperBound
             guard start >= zTop - k && start <= zEnd + k else { continue }
             let atTop: Bool = start <= zTop + k && start - zTop <= zEnd - start
             let atBottom: Bool = start >= zEnd - k && start - zTop > zEnd - start
             if dir > 0 {
-                if atBottom || offset > zEnd + k { break }          // read to the end: on to the next section
-                if projected >= zEnd { return abs(z.bottom.y - offset) <= 3 ? nil : z.bottom }
+                if atBottom || offset > zEnd + far { break }        // already at its end: on to the next section
+                reading = z
+                if projected >= zEnd { return abs(z.bottom.y - offset) <= 3 ? nil : z.bottom }   // rest on its last line
                 return nil
             } else if dir < 0 {
-                if atTop || offset < zTop - k { break }
+                if atTop || offset < zTop - far { break }
+                reading = z
                 if projected <= zTop { return abs(z.top.y - offset) <= 3 ? nil : z.top }
                 return nil
             } else if offset >= zTop - k && offset <= zEnd + k {
@@ -352,6 +360,12 @@ final class SnapStore {
         guard let l = layout else { return nil }
         let (stops, tall) = l
         if stops.contains(where: { abs($0.y - offset) <= 6 }) { return nil }
+        // Coasted past the end of the section you were reading: settle on its edge, not the next section.
+        if let z = reading {
+            reading = nil
+            if offset > z.range.upperBound && offset <= z.range.upperBound + pastEnd { return z.bottom }
+            if offset < z.range.lowerBound && offset >= z.range.lowerBound - pastEnd { return z.top }
+        }
         let y: CGFloat = offset
         if tall.contains(where: { (z: Tall) -> Bool in z.range.contains(y) || abs(y - z.range.lowerBound) <= 6 || abs(y - z.range.upperBound) <= 6 }) { return nil }
         return Self.destination(stops: stops, from: offset, to: offset, dragged: lastDir * Self.nudge)
