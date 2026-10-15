@@ -1,0 +1,602 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 63;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		004FA4D18D5D3F124672C7A8 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313C6363A22C4AC3CCB3BAC /* DashboardView.swift */; };
+		0D1547085AAA5E35292FFFB9 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25E7F3F2B3A57E4E1756202 /* Units.swift */; };
+		10B2D843C8BF749ACCC83BC4 /* Assessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B836E3F33B9E2F13B3873D3 /* Assessment.swift */; };
+		11DFE117444C4BA915E7BF56 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3696D258C8AD2E6261580064 /* Sun.swift */; };
+		1460D5025101D63AE2086F3C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FBED7F850AC291237DD435 /* Theme.swift */; };
+		21F21C282F88834768C0B74F /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F642CEE3F00B5739D722FC1 /* Secrets.swift */; };
+		280C2783DEB47D8C7026F985 /* Drones.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6ED81948E7755EF1D20843E /* Drones.swift */; };
+		3347FB51F946725EB6B3B6D0 /* Site.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF11866E387712FA26F1C392 /* Site.swift */; };
+		35AF88DB8E081F264B68D955 /* CoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43A0C86B24C3A383CD253DF /* CoreTests.swift */; };
+		429950982332A1E2FB0CFA81 /* points.json in Resources */ = {isa = PBXBuildFile; fileRef = 5256390F160649622113195C /* points.json */; };
+		46397C7B2DE6A81D6F8116DA /* FreeSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D475C1EED7023AF705A378 /* FreeSourceTests.swift */; };
+		5334BB7C49BAF1EB3C75CAF7 /* SkyDial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827C947D8DB98AFDDA509213 /* SkyDial.swift */; };
+		6915B87E65A5A2E039AF7636 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC65CE842B0999FFB1816555 /* Activities.swift */; };
+		6F1E4BF6DD3CFF05190E9CE8 /* Sheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A25872A2A7A75DB3F37CDF /* Sheets.swift */; };
+		6F29A6DA300268FEDEE99899 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0044F2268D54FCDC7FF444 /* AppModel.swift */; };
+		75C78B3AA907E31739E15206 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E30278CF9C25F6BC063EEF56 /* Assets.xcassets */; };
+		7836135C88643EDEFE134089 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB70449879E1825DA24F438 /* Sections.swift */; };
+		8CA8A6CC66AC75ADF18CD506 /* FreeSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B0FE49A4E05CE1889B35 /* FreeSources.swift */; };
+		9064936D01DD265527877C41 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B224C4DA9B6470914A1E53A6 /* Fixtures.swift */; };
+		96B17889C2BE4F86504369AB /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D65CEE43D07C83FFDA04300 /* LocationService.swift */; };
+		BFC41F2BFB2BF2AE22BB00FC /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD8AFFCED8CD8FB4BA3687 /* Weather.swift */; };
+		C131A6F75A9B0FB4C03E4C5A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E62965C738281978CDF2C /* OnboardingView.swift */; };
+		C1AEF91F425D19D6ECB724BD /* AirFieldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9679FF3986F0093AA9F4B677 /* AirFieldApp.swift */; };
+		C31BEAD616EAA282A675F82E /* Briefing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9470BCCDA8551F1EE32B4562 /* Briefing.swift */; };
+		CD89C7B9FF38706FD064B8E2 /* Anton-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F8AFE37E5AA11C18293735D /* Anton-Regular.ttf */; };
+		DAC896F19B00738898FD9865 /* metno.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C73B6CADE9839E2F5B56370 /* metno.json */; };
+		DFB0030B0B1F28B189A7F603 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3EB046B91BB3C6DF3B7616F3 /* PrivacyInfo.xcprivacy */; };
+		E14267A34B6995B5FBF57064 /* grid.json in Resources */ = {isa = PBXBuildFile; fileRef = 9829CA3FC08CF9E0EC6DA841 /* grid.json */; };
+		E5E55C3538E91396BDBA9F2C /* Anton-OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9614D44238DA96B67EB52D72 /* Anton-OFL.txt */; };
+		EB0235AF4EBA55F201452892 /* metar.json in Resources */ = {isa = PBXBuildFile; fileRef = 89EA24A4B9741D64F890323E /* metar.json */; };
+		F5ED8BF5714BDECF451670B5 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D0D5D8951DFC085401DAEA /* Services.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B13E4CADB7F4869C5228B497 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB922A8FF0DB47E5A3984FFC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9955BCC1C7E91605035B0489;
+			remoteInfo = AirField;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		11A25872A2A7A75DB3F37CDF /* Sheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheets.swift; sourceTree = "<group>"; };
+		1B836E3F33B9E2F13B3873D3 /* Assessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assessment.swift; sourceTree = "<group>"; };
+		21FBED7F850AC291237DD435 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		2C73B6CADE9839E2F5B56370 /* metno.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = metno.json; sourceTree = "<group>"; };
+		2D65CEE43D07C83FFDA04300 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		2F8AFE37E5AA11C18293735D /* Anton-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Anton-Regular.ttf"; sourceTree = "<group>"; };
+		3313C6363A22C4AC3CCB3BAC /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		3696D258C8AD2E6261580064 /* Sun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
+		3EB046B91BB3C6DF3B7616F3 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		3F642CEE3F00B5739D722FC1 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		4A0044F2268D54FCDC7FF444 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		4CAD8AFFCED8CD8FB4BA3687 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		5256390F160649622113195C /* points.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = points.json; sourceTree = "<group>"; };
+		65D475C1EED7023AF705A378 /* FreeSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeSourceTests.swift; sourceTree = "<group>"; };
+		6DECFD3FC42423D3381FD350 /* AirFieldTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = AirFieldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		75089E24F4B00167B08D9800 /* AirField.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirField.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		827C947D8DB98AFDDA509213 /* SkyDial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyDial.swift; sourceTree = "<group>"; };
+		89EA24A4B9741D64F890323E /* metar.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = metar.json; sourceTree = "<group>"; };
+		8D345D9DC1914F8C2DF82208 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9470BCCDA8551F1EE32B4562 /* Briefing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Briefing.swift; sourceTree = "<group>"; };
+		9614D44238DA96B67EB52D72 /* Anton-OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Anton-OFL.txt"; sourceTree = "<group>"; };
+		9679FF3986F0093AA9F4B677 /* AirFieldApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirFieldApp.swift; sourceTree = "<group>"; };
+		9829CA3FC08CF9E0EC6DA841 /* grid.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = grid.json; sourceTree = "<group>"; };
+		AF30B0FE49A4E05CE1889B35 /* FreeSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeSources.swift; sourceTree = "<group>"; };
+		B10E62965C738281978CDF2C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		B224C4DA9B6470914A1E53A6 /* Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
+		BAB70449879E1825DA24F438 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
+		C6ED81948E7755EF1D20843E /* Drones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drones.swift; sourceTree = "<group>"; };
+		D3D0D5D8951DFC085401DAEA /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		E30278CF9C25F6BC063EEF56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F25E7F3F2B3A57E4E1756202 /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
+		F43A0C86B24C3A383CD253DF /* CoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTests.swift; sourceTree = "<group>"; };
+		FC65CE842B0999FFB1816555 /* Activities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
+		FF11866E387712FA26F1C392 /* Site.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Site.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0574F7104AA22B42FB557D36 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E30278CF9C25F6BC063EEF56 /* Assets.xcassets */,
+				3EB046B91BB3C6DF3B7616F3 /* PrivacyInfo.xcprivacy */,
+				E6483C584F03222D255DC8A1 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		26DD3370D38152632D0616B8 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				FC65CE842B0999FFB1816555 /* Activities.swift */,
+				1B836E3F33B9E2F13B3873D3 /* Assessment.swift */,
+				9470BCCDA8551F1EE32B4562 /* Briefing.swift */,
+				C6ED81948E7755EF1D20843E /* Drones.swift */,
+				AF30B0FE49A4E05CE1889B35 /* FreeSources.swift */,
+				D3D0D5D8951DFC085401DAEA /* Services.swift */,
+				FF11866E387712FA26F1C392 /* Site.swift */,
+				3696D258C8AD2E6261580064 /* Sun.swift */,
+				F25E7F3F2B3A57E4E1756202 /* Units.swift */,
+				4CAD8AFFCED8CD8FB4BA3687 /* Weather.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		37E3F936188331CE5E9BA50C /* Samples */ = {
+			isa = PBXGroup;
+			children = (
+				9829CA3FC08CF9E0EC6DA841 /* grid.json */,
+				89EA24A4B9741D64F890323E /* metar.json */,
+				2C73B6CADE9839E2F5B56370 /* metno.json */,
+				5256390F160649622113195C /* points.json */,
+			);
+			path = Samples;
+			sourceTree = "<group>";
+		};
+		47985C226D65F3BB9A364623 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				9679FF3986F0093AA9F4B677 /* AirFieldApp.swift */,
+				4A0044F2268D54FCDC7FF444 /* AppModel.swift */,
+				2D65CEE43D07C83FFDA04300 /* LocationService.swift */,
+				3F642CEE3F00B5739D722FC1 /* Secrets.swift */,
+				21FBED7F850AC291237DD435 /* Theme.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4ABBF9D3C30FC01DBE2C98B5 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				DB1F47950D203BFEB902B276 /* AirFieldCoreTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		51895B0D424A97F9C501C2E7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3313C6363A22C4AC3CCB3BAC /* DashboardView.swift */,
+				B10E62965C738281978CDF2C /* OnboardingView.swift */,
+				BAB70449879E1825DA24F438 /* Sections.swift */,
+				11A25872A2A7A75DB3F37CDF /* Sheets.swift */,
+				827C947D8DB98AFDDA509213 /* SkyDial.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B002AD9DF5AA83A5A970B764 /* AirField */ = {
+			isa = PBXGroup;
+			children = (
+				8D345D9DC1914F8C2DF82208 /* Info.plist */,
+				47985C226D65F3BB9A364623 /* App */,
+				26DD3370D38152632D0616B8 /* Core */,
+				0574F7104AA22B42FB557D36 /* Resources */,
+				51895B0D424A97F9C501C2E7 /* Views */,
+			);
+			path = AirField;
+			sourceTree = "<group>";
+		};
+		C91AA723B72081D02D9B9936 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				75089E24F4B00167B08D9800 /* AirField.app */,
+				6DECFD3FC42423D3381FD350 /* AirFieldTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB1F47950D203BFEB902B276 /* AirFieldCoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				F43A0C86B24C3A383CD253DF /* CoreTests.swift */,
+				B224C4DA9B6470914A1E53A6 /* Fixtures.swift */,
+				65D475C1EED7023AF705A378 /* FreeSourceTests.swift */,
+				37E3F936188331CE5E9BA50C /* Samples */,
+			);
+			path = AirFieldCoreTests;
+			sourceTree = "<group>";
+		};
+		E6483C584F03222D255DC8A1 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9614D44238DA96B67EB52D72 /* Anton-OFL.txt */,
+				2F8AFE37E5AA11C18293735D /* Anton-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F1865EC58BF68E491AE45C90 = {
+			isa = PBXGroup;
+			children = (
+				B002AD9DF5AA83A5A970B764 /* AirField */,
+				4ABBF9D3C30FC01DBE2C98B5 /* Tests */,
+				C91AA723B72081D02D9B9936 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9955BCC1C7E91605035B0489 /* AirField */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA216DD3AE41C49E6ADCB306 /* Build configuration list for PBXNativeTarget "AirField" */;
+			buildPhases = (
+				D41A34B60E9E30BF323DA03B /* Sources */,
+				F980A4E89F013B1B42F7F466 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AirField;
+			packageProductDependencies = (
+			);
+			productName = AirField;
+			productReference = 75089E24F4B00167B08D9800 /* AirField.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E80F0C32A935B7B9C3ACA1B9 /* AirFieldTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E01E9C1C846B54CE1C885132 /* Build configuration list for PBXNativeTarget "AirFieldTests" */;
+			buildPhases = (
+				B9A4B1FA859BAF4897C35F77 /* Sources */,
+				C9018A86685C43FC848442E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E37347DA61D58D33B280AB52 /* PBXTargetDependency */,
+			);
+			name = AirFieldTests;
+			packageProductDependencies = (
+			);
+			productName = AirFieldTests;
+			productReference = 6DECFD3FC42423D3381FD350 /* AirFieldTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BB922A8FF0DB47E5A3984FFC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					9955BCC1C7E91605035B0489 = {
+						ProvisioningStyle = Automatic;
+					};
+					E80F0C32A935B7B9C3ACA1B9 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 76642751D6765BAAB502429A /* Build configuration list for PBXProject "AirField" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = F1865EC58BF68E491AE45C90;
+			minimizedProjectReferenceProxies = 1;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9955BCC1C7E91605035B0489 /* AirField */,
+				E80F0C32A935B7B9C3ACA1B9 /* AirFieldTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C9018A86685C43FC848442E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E14267A34B6995B5FBF57064 /* grid.json in Resources */,
+				EB0235AF4EBA55F201452892 /* metar.json in Resources */,
+				DAC896F19B00738898FD9865 /* metno.json in Resources */,
+				429950982332A1E2FB0CFA81 /* points.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F980A4E89F013B1B42F7F466 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5E55C3538E91396BDBA9F2C /* Anton-OFL.txt in Resources */,
+				CD89C7B9FF38706FD064B8E2 /* Anton-Regular.ttf in Resources */,
+				75C78B3AA907E31739E15206 /* Assets.xcassets in Resources */,
+				DFB0030B0B1F28B189A7F603 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B9A4B1FA859BAF4897C35F77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35AF88DB8E081F264B68D955 /* CoreTests.swift in Sources */,
+				9064936D01DD265527877C41 /* Fixtures.swift in Sources */,
+				46397C7B2DE6A81D6F8116DA /* FreeSourceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D41A34B60E9E30BF323DA03B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6915B87E65A5A2E039AF7636 /* Activities.swift in Sources */,
+				C1AEF91F425D19D6ECB724BD /* AirFieldApp.swift in Sources */,
+				6F29A6DA300268FEDEE99899 /* AppModel.swift in Sources */,
+				10B2D843C8BF749ACCC83BC4 /* Assessment.swift in Sources */,
+				C31BEAD616EAA282A675F82E /* Briefing.swift in Sources */,
+				004FA4D18D5D3F124672C7A8 /* DashboardView.swift in Sources */,
+				280C2783DEB47D8C7026F985 /* Drones.swift in Sources */,
+				8CA8A6CC66AC75ADF18CD506 /* FreeSources.swift in Sources */,
+				96B17889C2BE4F86504369AB /* LocationService.swift in Sources */,
+				C131A6F75A9B0FB4C03E4C5A /* OnboardingView.swift in Sources */,
+				21F21C282F88834768C0B74F /* Secrets.swift in Sources */,
+				7836135C88643EDEFE134089 /* Sections.swift in Sources */,
+				F5ED8BF5714BDECF451670B5 /* Services.swift in Sources */,
+				6F1E4BF6DD3CFF05190E9CE8 /* Sheets.swift in Sources */,
+				3347FB51F946725EB6B3B6D0 /* Site.swift in Sources */,
+				5334BB7C49BAF1EB3C75CAF7 /* SkyDial.swift in Sources */,
+				11DFE117444C4BA915E7BF56 /* Sun.swift in Sources */,
+				1460D5025101D63AE2086F3C /* Theme.swift in Sources */,
+				0D1547085AAA5E35292FFFB9 /* Units.swift in Sources */,
+				BFC41F2BFB2BF2AE22BB00FC /* Weather.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E37347DA61D58D33B280AB52 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9955BCC1C7E91605035B0489 /* AirField */;
+			targetProxy = B13E4CADB7F4869C5228B497 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		43B55016E826D838A25574A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3B957K4ZTB;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = AirField/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.pages.airfield-app.ios";
+				PRODUCT_NAME = AirField;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		53C636101D1DC0794E7ADC60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.pages.airfield-app.ios.tests";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirField.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AirField";
+			};
+			name = Debug;
+		};
+		67FED4BD12950EDFAA923D87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.pages.airfield-app.ios.tests";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirField.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AirField";
+			};
+			name = Release;
+		};
+		A4357E4E9EC8123F43F76675 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3B957K4ZTB;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = AirField/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.pages.airfield-app.ios";
+				PRODUCT_NAME = AirField;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		DCD125D26DA839C1A32CE3CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F1EB5AAB63E679F74BBC7B95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		76642751D6765BAAB502429A /* Build configuration list for PBXProject "AirField" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCD125D26DA839C1A32CE3CE /* Debug */,
+				F1EB5AAB63E679F74BBC7B95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E01E9C1C846B54CE1C885132 /* Build configuration list for PBXNativeTarget "AirFieldTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53C636101D1DC0794E7ADC60 /* Debug */,
+				67FED4BD12950EDFAA923D87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		EA216DD3AE41C49E6ADCB306 /* Build configuration list for PBXNativeTarget "AirField" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43B55016E826D838A25574A2 /* Debug */,
+				A4357E4E9EC8123F43F76675 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BB922A8FF0DB47E5A3984FFC /* Project object */;
+}
