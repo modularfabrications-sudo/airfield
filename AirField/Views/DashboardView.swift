@@ -297,6 +297,11 @@ final class SnapStore {
     /// Every section lands centred. A drag that stopped goes on to the next one that way, never back.
     /// A flick goes to the first section its momentum hasn't reached yet: if the speed carried it past a
     /// section, it keeps going to the next one rather than being pulled back (only a hair past counts as there).
+    /// Sections a flick can't skip by accident: Airspace is short and sits right under the dial, so an ordinary
+    /// flick from the top (or up from Right now) would fly straight past it. It's only skipped by a flick strong
+    /// enough to also carry past the section beyond it.
+    static let sticky: Set<Int> = [1]
+
     static func destination(stops: [SnapStop], from: CGFloat, to: CGFloat, dragged: CGFloat) -> SnapStop? {
         guard !stops.isEmpty else { return nil }
         let flick = to - from
@@ -309,12 +314,23 @@ final class SnapStore {
         guard let first = ahead.first else { return s.last }
         guard abs(flick) > 2 else { return first }
         let reach = (to - from) * sign
-        guard let after = ahead.first(where: { ($0.y - from) * sign >= reach }) else { return ahead.last }
-        if let before = ahead.last(where: { ($0.y - from) * sign < reach }) {
-            let past = reach - (before.y - from) * sign, gap = abs(after.y - before.y)
-            if past < 0.1 * gap { return before }
+        let dist = { (t: SnapStop) in (t.y - from) * sign }
+        var chosen: SnapStop
+        if let after = ahead.first(where: { dist($0) >= reach }) {
+            chosen = after
+            if let before = ahead.last(where: { dist($0) < reach }) {
+                let past = reach - dist(before), gap = abs(after.y - before.y)
+                if past < 0.1 * gap { chosen = before }
+            }
+        } else {
+            chosen = ahead.last!
         }
-        return after
+        // Don't fly past a sticky section unless the flick also carried past the section beyond it.
+        if let i = ahead.firstIndex(where: { sticky.contains($0.id) && dist($0) < dist(chosen) }) {
+            let beyond = i + 1 < ahead.count ? dist(ahead[i + 1]) : .infinity
+            if reach < beyond { return ahead[i] }
+        }
+        return chosen
     }
 
     private var layout: (stops: [SnapStop], tall: [Tall])? {
