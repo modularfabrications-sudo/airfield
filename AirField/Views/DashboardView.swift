@@ -30,7 +30,7 @@ struct DashboardView: View {
                         TileGrid(tiles: b.tiles) { showTilt = true }
                     }.roll().snap(2)
                     VStack(spacing: 10) {
-                        SectionHeader(title: "Heads up", aside: "next 24 h")
+                        SectionHeader(title: "Heads up", aside: "next 48 h")
                         HeadsUpList(items: b.headsUp)
                     }.roll().snap(3)
                     VStack(spacing: 10) {
@@ -317,16 +317,29 @@ final class SnapStore {
         let dir: CGFloat = flick ? v : (abs(dragged) >= Self.nudge ? dragged : 0)
         lastDir = dir > 0 ? 1 : dir < 0 ? -1 : 0
         let projected = flick ? offset + v * 0.5 : offset      // where iOS's normal deceleration would coast to
-        // Reading inside a tall section (or at one of its edges heading in): coast freely, but stop at its edge.
+        // Reading a section taller than the screen: scroll it freely, and a flick stops at its far edge.
+        // Only a drag that starts at that edge, heading out, moves on to the next section. Judged by where the
+        // drag started, so a long drag inside it, or a section just a little taller than the screen, never
+        // jumps past the part you haven't read yet.
+        let start: CGFloat = dragStart ?? offset
+        let k: CGFloat = Self.slack
         for z in tall {
-            let zTop: CGFloat = z.range.lowerBound, zEnd: CGFloat = z.range.upperBound, k: CGFloat = Self.slack
-            let inside: Bool = offset > zTop + k && offset < zEnd - k
-            let enteringTop: Bool = abs(offset - zTop) <= k && dir > 0
-            let enteringBottom: Bool = abs(offset - zEnd) <= k && dir < 0
-            guard inside || enteringTop || enteringBottom else { continue }
-            if projected > z.range.upperBound { return z.bottom }
-            if projected < z.range.lowerBound { return z.top }
-            return nil
+            let zTop: CGFloat = z.range.lowerBound, zEnd: CGFloat = z.range.upperBound
+            guard start >= zTop - k && start <= zEnd + k else { continue }
+            let atTop: Bool = start <= zTop + k && start - zTop <= zEnd - start
+            let atBottom: Bool = start >= zEnd - k && start - zTop > zEnd - start
+            if dir > 0 {
+                if atBottom || offset > zEnd + k { break }          // read to the end: on to the next section
+                if projected >= zEnd { return abs(z.bottom.y - offset) <= 3 ? nil : z.bottom }
+                return nil
+            } else if dir < 0 {
+                if atTop || offset < zTop - k { break }
+                if projected <= zTop { return abs(z.top.y - offset) <= 3 ? nil : z.top }
+                return nil
+            } else if offset >= zTop - k && offset <= zEnd + k {
+                return nil
+            }
+            break
         }
         releaseVelocity = flick ? v : 0
         let d = Self.destination(stops: stops, from: offset, to: projected, dragged: dragged)
